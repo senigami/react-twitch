@@ -2,13 +2,17 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class StreamCreate extends React.Component {
-	renderError({ error, touched }) {
+	renderError = ({ error, touched }) => {
 		if (touched && error) {
-			return <div>error</div>;
+			return (
+				<div className="ui error message">
+					<div className="header">{error}</div>
+				</div>
+			);
 		}
-	}
+	};
 
-	renderInput({ input, label, meta }) {
+	renderInput = ({ input, label, meta }) => {
 		return (
 			<div className="field">
 				<label>{label}</label>
@@ -16,7 +20,7 @@ class StreamCreate extends React.Component {
 				{this.renderError(meta)}
 			</div>
 		);
-	}
+	};
 
 	onSubmit(formValues) {}
 
@@ -39,7 +43,7 @@ const validate = formValues => {
 	}
 
 	if (!formValues.description) {
-		errors.title = 'You must enter a description';
+		errors.description = 'You must enter a description';
 	}
 
 	return errors;
